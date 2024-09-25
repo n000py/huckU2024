@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
@@ -7,8 +7,12 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-#@app.route("/add",methods=["post"])
-
+# @app.route("/add",methods=["post"])
+# def add():
+#     title = request.form["title"]
+#     time = request.form["time"]
+    
+    
     
 
 

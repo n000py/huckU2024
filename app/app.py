@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request
 from models.models import MedicineInfo
 from models.database import db_session
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -25,6 +26,16 @@ def add():
     db_session.add(content)
     db_session.commit()
     return index()
+
+@app.route("/delete",methods=["post"])
+def delete():
+    id_list = request.form.getlist("delete")
+    for id in id_list:
+        content = MedicineInfo.query.filter_by(id=id).first()
+        db_session.delete(content)
+    db_session.commit()
+    return index()
+        
     
 
 #app.pyをターミナルから直接呼び出した時だけ、app.run()を実行する

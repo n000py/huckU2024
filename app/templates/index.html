@@ -10,9 +10,14 @@
         <input type="text" name="time" placeholder="time">
         <input type="submit" value="Add">
     </form>
+    <form action="/delete" method="post" id="delete">
+        <input type="submit" value="チェックした項目を削除する">
+    </form>
 
     {% for medicine in all_med %}
-    <p>{{medicine.title}}：（{{medicine.time}}）</p>
+    <div>
+        <input type="checkbox" name="delete" form="delete" value={{medicine.id}}>
+        {{medicine.title}}：（{{medicine.time}}）
     </div>
     {% endfor %}
     </body>

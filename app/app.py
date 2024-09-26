@@ -13,16 +13,22 @@ def index():
     all_med = MedicineInfo.query.all()
     return render_template("index.html",name=name,all_med=all_med)
 
-@app.route("/index",methods=["post"])
-def post():
-    name = request.form["name"]
-    all_med = MedicineInfo.query.all()
-    return render_template("index.html",name=name,all_med=all_med)
+# @app.route("/index",methods=["post"])
+# def post():
+#     name = request.form["name"]
+#     all_med = MedicineInfo.query.all()
+#     return render_template("index.html",name=name,all_med=all_med)
+
 
 @app.route("/add",methods=["post"])
 def add():
     title = request.form["title"]
-    time = request.form["time"]
+    #time = request.form["time"]
+    selected_option = request.form.get("MorN")
+    if selected_option == "night":
+        time = "20:00"
+    else:
+        time = "8:00"
     content = MedicineInfo(title,time)
     db_session.add(content)
     db_session.commit()
@@ -49,7 +55,7 @@ def check_time_and_trigger():
 
 #スケジューラのセットアップ
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=check_time_and_trigger,trigger = "interval", seconds=30)
+scheduler.add_job(func=check_time_and_trigger,trigger = "interval", seconds=60)
 scheduler.start()
 
 #app.pyをターミナルから直接呼び出した時だけ、app.run()を実行する

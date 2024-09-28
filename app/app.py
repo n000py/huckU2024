@@ -13,11 +13,6 @@ def index():
     all_med = MedicineInfo.query.all()
     return render_template("index.html",name=name,all_med=all_med)
 
-# @app.route("/index",methods=["post"])
-# def post():
-#     name = request.form["name"]
-#     all_med = MedicineInfo.query.all()
-#     return render_template("index.html",name=name,all_med=all_med)
 
 
 @app.route("/add",methods=["post"])

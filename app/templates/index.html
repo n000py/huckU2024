@@ -1,30 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>tell me medicine</title>
+        <style>
+            body {
+                color: white;
+                background-color: #5D99FF;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+            }
+
+            .title h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #4A89DC;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            input[type="text"], select {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 1em;
+                border-radius: 5px;
+                border: none;
+                width: 80%;
+                max-width: 400px;
+            }
+
+            input[type="submit"] {
+                background-color: #47C9A2;
+                color: white;
+                padding: 10px 20px;
+                font-size: 1em;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #3AA889;
+            }
+
+            .time select {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 1em;
+                border-radius: 5px;
+                width: 100%;
+                height: 40px;
+                max-width: 400px;
+            }
+
+            .add_botton {
+                margin-top: 20px;
+            }
+
+            .time div {
+                margin-bottom: 20px;
+            }
+
+            div {
+                text-align: center;
+            }
+
+            .medicine-list {
+                margin: 20px 0;
+            }
+
+            .medicine-list div {
+                background-color: #478DC1;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                max-width: 400px;
+            }
+
+            .medicine-list div input[type="checkbox"] {
+                margin-right: 10px;
+            }
+        </style>
     </head>
     <body>
-    <h1>教えてメディシン</h1>
-    <form action="/add" method="post">
-        <input type="text" name="title" placeholder="title">
+        <div class="title">
+            <h1>教えてメディシン</h1>
+        </div>
 
-        <select name="MorN">
-            <option value="morning">朝</option>
-            <option value="night">夜</option>
-        </select>
-        <!--<input type="text" name="time" placeholder="time"> -->
-        <input type="submit" value="Add">
-    </form>
+        <form action="/add" method="post">
+            <input type="text" name="title" placeholder="薬の名前を入力">
+            <div class="time">
+                <select name="MorN">
+                    <option value="morning">朝</option>
+                    <option value="night">夜</option>
+                </select>
+            </div>
+            <div class="add_botton">
+                <input type="submit" value="Add">
+            </div>
+        </form>
 
-    <form action="/delete" method="post" id="delete">
-        <input type="submit" value="チェックした項目を削除する">
-    </form>
+        <form action="/delete" method="post" id="delete">
+            <input type="submit" value="チェックした項目を削除する">
+        </form>
 
-    {% for medicine in all_med %}
-    <div>
-        <input type="checkbox" name="delete" form="delete" value={{medicine.id}}>
-        {{medicine.title}}：（{{medicine.time}}）
-    </div>
-    {% endfor %}
+        <div class="medicine-list">
+            {% for medicine in all_med %}
+            <div>
+                <input type="checkbox" name="delete" form="delete" value="{{medicine.id}}">
+                {{medicine.title}} ：（{{medicine.time}}）
+            </div>
+            {% endfor %}
+        </div>
     </body>
 </html>

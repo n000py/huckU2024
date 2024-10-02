@@ -17,17 +17,31 @@ def index():
 
 @app.route("/add",methods=["post"])
 def add():
-    title = request.form["title"]
-    #time = request.form["time"]
-    selected_option = request.form.get("MorN")
-    if selected_option == "night":
-        time = "20:00"
-    else:
-        time = "8:00"
-    content = MedicineInfo(title,time)
-    db_session.add(content)
-    db_session.commit()
-    return index()
+    try:
+        title = request.form.get("title")
+        selected_option = request.form.get("MorN")
+
+        if not title:
+            return "タイトルが空です。"
+
+        if selected_option == "night":
+            time = "20:00"
+        elif selected_option == "morning":
+            time = "8:00"
+        else:
+            morning_content = MedicineInfo(title+' (朝)', "8:00")
+            night_content = MedicineInfo(title+' (夜)', "20:00")
+            db_session.add(morning_content)
+            db_session.add(night_content)
+            db_session.commit()
+            return index()
+
+        content = MedicineInfo(title, time)
+        db_session.add(content)
+        db_session.commit()
+        return index()
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 @app.route("/delete",methods=["post"])
 def delete():

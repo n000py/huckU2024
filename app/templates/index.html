@@ -4,102 +4,134 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>tell me medicine</title>
-        <style>
+                <style>
             body {
-                color: white;
-                background-color: #5D99FF;
-                font-family: Arial, sans-serif;
+                color: #333;
+                background-color: #f0f4f8;
+                font-family: 'Helvetica Neue', Arial, sans-serif;
                 margin: 0;
                 padding: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                height: auto;
                 flex-direction: column;
             }
-
+    
             .title h1 {
-                font-size: 2.5em;
+                font-size: 4em;
                 margin-bottom: 20px;
                 text-align: center;
+                color: #2c3e50;
+                font-weight: bold;
             }
-
+    
             form {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                background-color: #4A89DC;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-                margin-bottom: 20px;
-            }
-
-            input[type="text"], select {
-                padding: 10px;
-                margin: 10px 0;
-                font-size: 1em;
-                border-radius: 5px;
-                border: none;
-                width: 80%;
-                max-width: 400px;
-            }
-
-            input[type="submit"] {
-                background-color: #47C9A2;
-                color: white;
-                padding: 10px 20px;
-                font-size: 1em;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-
-            input[type="submit"]:hover {
-                background-color: #3AA889;
-            }
-
-            .time select {
-                padding: 10px;
-                margin: 10px 0;
-                font-size: 1em;
-                border-radius: 5px;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                margin-bottom: 30px;
                 width: 100%;
-                height: 40px;
-                max-width: 400px;
+                max-width: 500px;
             }
-
+    
+            input[type="text"], select {
+                padding: 15px;
+                margin: 10px 0;
+                font-size: 1.1em;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+                width: 100%;
+                max-width: 400px;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+            }
+    
+            input[type="text"]:focus, select:focus {
+                border-color: #3498db;
+                outline: none;
+                box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            }
+    
+            input[type="submit"] {
+                background-color: #e74c3c;
+                color: white;
+                padding: 12px 25px;
+                font-size: 1.2em;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+    
+            input[type="submit"]:hover {
+                background-color: #c0392b;
+                transform: scale(1.05);
+            }
+    
+            .time select {
+                padding: 15px;
+                margin: 10px 0;
+                font-size: 1.1em;
+                border-radius: 10px;
+                width: 100%;
+                max-width: 400px;
+                box-sizing: border-box;
+            }
+    
             .add_botton {
                 margin-top: 20px;
             }
-
-            .time div {
-                margin-bottom: 20px;
-            }
-
+    
             div {
                 text-align: center;
             }
-
+    
             .medicine-list {
                 margin: 20px 0;
+                width: 100%;
+                max-width: 500px;
             }
-
+    
             .medicine-list div {
-                background-color: #478DC1;
-                padding: 10px;
-                margin-bottom: 10px;
-                border-radius: 5px;
+                background-color: #3498db;
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 10px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 80%;
-                max-width: 400px;
+                color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
-
+    
             .medicine-list div input[type="checkbox"] {
-                margin-right: 10px;
+                margin-right: 15px;
+                transform: scale(1.3);
+            }
+    
+            .medicine-list div:hover {
+                background-color: #2980b9;
+            }
+    
+            @media (max-width: 600px) {
+                .title h1 {
+                    font-size: 3em;
+                }
+    
+                form, .medicine-list div {
+                    padding: 15px;
+                    width: 90%;
+                }
+    
+                input[type="submit"] {
+                    font-size: 1em;
+                    padding: 10px 20px;
+                }
             }
         </style>
     </head>
